@@ -6,14 +6,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.joaovpiment.torneios.dto.SorteioDTO;
 
-@FeignClient(name = "loteria-client", url = "https://apiloterias.com.br/app/resultado"
-//, configuration = FeignConfig.class
-		)
+@FeignClient(name = "loteria-mksoft-client", url = "https://apiloterias.mksoft.com.br/v1")
 public interface ApiLoteriasClient {
 
 	@GetMapping
-	//	(consumes = "application/json", produces = "application/json")
-	//	@Headers("Accept: html")
-	public SorteioDTO getUltimoSorteio(@RequestParam String loteria, @RequestParam String token, @RequestParam String concurso);
+	public SorteioDTO getUltimoSorteio(@RequestParam String sorteio, @RequestParam String key);
+
+	@GetMapping
+	public SorteioDTO getSorteioByNumeroConcurso(@RequestParam String sorteio, @RequestParam String key, @RequestParam String concurso);
 
 }
